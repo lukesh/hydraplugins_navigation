@@ -5,8 +5,11 @@ package com.hydraframework.plugins.navigation.model {
 	import com.hydraframework.plugins.navigation.NavigationPlugin;
 	import com.hydraframework.plugins.navigation.interfaces.ISitemap;
 	import com.hydraframework.plugins.navigation.interfaces.ISitemapItem;
+	
 	import flash.events.Event;
 	import flash.utils.setTimeout;
+	
+	import mx.controls.Alert;
 	import mx.events.BrowserChangeEvent;
 	import mx.managers.BrowserManager;
 	import mx.managers.IBrowserManager;
@@ -69,6 +72,10 @@ package com.hydraframework.plugins.navigation.model {
 			if (url is ISitemapItem) {
 				item = url as ISitemapItem;
 			} else {
+				if (!this._sitemap) {
+					setTimeout(loadContent, 200, url, true);
+					return;
+				}
 				item = this._sitemap.getItemByUrl(url as String);
 			}
 
