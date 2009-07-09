@@ -21,6 +21,11 @@ package com.hydraframework.plugins.navigation.model {
 		public static function getInstance():NavigationProxy {
 			return _instance;
 		}
+		
+		public static function get instance():NavigationProxy {
+			return _instance;
+		}
+		
 		private var _sitemap:ISitemap;
 
 		public function set sitemap(sitemap:ISitemap):void {
