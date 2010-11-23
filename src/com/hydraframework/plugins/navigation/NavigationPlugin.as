@@ -3,14 +3,16 @@
    Your reuse is governed by the MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 package com.hydraframework.plugins.navigation {
+
 	import com.hydraframework.core.mvc.patterns.plugin.Plugin;
 	import com.hydraframework.plugins.navigation.controller.*;
 	import com.hydraframework.plugins.navigation.model.NavigationProxy;
 
 	public class NavigationPlugin extends Plugin {
-		public static var NAME:String = "NavigationPlugin";
+
+		public static var NAME:String        = "NavigationPlugin";
 		public static var SET_SITEMAP:String = "plugins.navigation.setSitemap";
-		public static var NAVIGATE:String = "plugins.navigation.navigate";
+		public static var NAVIGATE:String    = "plugins.navigation.navigate";
 
 		public function NavigationPlugin() {
 			super(NAME);

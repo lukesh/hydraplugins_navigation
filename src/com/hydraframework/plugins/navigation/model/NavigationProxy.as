@@ -3,37 +3,39 @@
    Your reuse is governed by the MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 package com.hydraframework.plugins.navigation.model {
+
 	import com.hydraframework.core.mvc.events.Notification;
 	import com.hydraframework.core.mvc.events.Phase;
 	import com.hydraframework.core.mvc.patterns.proxy.Proxy;
 	import com.hydraframework.plugins.navigation.NavigationPlugin;
 	import com.hydraframework.plugins.navigation.interfaces.ISitemap;
 	import com.hydraframework.plugins.navigation.interfaces.ISitemapItem;
-	
+
 	import flash.events.Event;
 	import flash.utils.setTimeout;
-	
+
 	import mx.controls.Alert;
 	import mx.events.BrowserChangeEvent;
 	import mx.managers.BrowserManager;
 	import mx.managers.IBrowserManager;
 
 	public class NavigationProxy extends Proxy {
-		public static const NAME:String = "NavigationProxy";
+		public static const NAME:String                = "NavigationProxy";
 		private static const _instance:NavigationProxy = new NavigationProxy();
 
 		public static function getInstance():NavigationProxy {
 			return _instance;
 		}
-		
+
 		public static function get instance():NavigationProxy {
 			return _instance;
 		}
-		
+
 		private var _sitemap:ISitemap;
 
 		public function set sitemap(sitemap:ISitemap):void {
 			this._sitemap = sitemap;
+			this.sendNotification(new Notification(NavigationPlugin.SET_SITEMAP, sitemap, Phase.RESPONSE)); //fix - wdeshong - 20101122
 		}
 
 		public function get sitemap():ISitemap {
@@ -41,7 +43,7 @@ package com.hydraframework.plugins.navigation.model {
 		}
 		public var currentItem:ISitemapItem;
 		public var browserManager:IBrowserManager;
-		private var parsing:Boolean = false;
+		private var parsing:Boolean                    = false;
 
 		public function NavigationProxy() {
 			super(NAME);
@@ -98,7 +100,7 @@ package com.hydraframework.plugins.navigation.model {
 			}
 		}
 
-		public function navigateTo(url:Object=null):void {
+		public function navigateTo(url:Object = null):void {
 			if (url == null) {
 				parseURL(null);
 			} else {
